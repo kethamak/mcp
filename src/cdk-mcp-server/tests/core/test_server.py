@@ -53,3 +53,12 @@ def test_main_with_sse_args(mock_run):
         main()
         assert mcp.settings.port == 9999
         mock_run.assert_called_once_with(transport='sse')
+
+
+@patch('awslabs.cdk_mcp_server.core.server.mcp.run')
+def test_main_with_custom_port_no_sse(mock_run):
+    """Test main function with port specified but without SSE."""
+    with patch('sys.argv', ['server.py', '--port', '9998']):
+        main()
+        assert mcp.settings.port == 9998
+        mock_run.assert_called_once_with()

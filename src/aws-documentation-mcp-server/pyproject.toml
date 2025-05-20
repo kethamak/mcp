@@ -103,7 +103,7 @@ version = "0.0.1"
 tag_format = "v$version"
 version_files = [
     "pyproject.toml:version",
-    "awslabs/aws-documentation_mcp_server.__init__py:__version__"
+    "awslabs/aws_documentation_mcp_server/__init__.py:__version__",
 ]
 update_changelog_on_bump = true
 

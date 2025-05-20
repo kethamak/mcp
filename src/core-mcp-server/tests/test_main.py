@@ -44,6 +44,17 @@ class TestMain:
 
         assert mcp.settings.port == 9999
 
+    @patch('awslabs.core_mcp_server.server.mcp.run')
+    @patch('sys.argv', ['awslabs.core-mcp-server', '--port', '9998'])
+    def test_main_custom_port_no_sse(self, mock_run):
+        """Test main function sets port even without SSE."""
+        main()
+
+        mock_run.assert_called_once()
+        from awslabs.core_mcp_server.server import mcp
+
+        assert mcp.settings.port == 9998
+
     def test_module_execution(self):
         """Test the module execution when run as __main__."""
         # This test directly executes the code in the if __name__ == '__main__': block

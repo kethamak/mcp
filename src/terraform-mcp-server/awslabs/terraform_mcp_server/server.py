@@ -317,9 +317,11 @@ def main():
 
     args = parser.parse_args()
 
+    # Always respect the provided port
+    mcp.settings.port = args.port
+
     # Run server with appropriate transport
     if args.sse:
-        mcp.settings.port = args.port
         mcp.run(transport='sse')
     else:
         mcp.run()

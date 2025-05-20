@@ -412,10 +412,12 @@ def main():
     # Log startup information
     logger.info('Starting AWS Documentation MCP Server')
 
+    # Always respect the provided port
+    mcp.settings.port = args.port
+
     # Run server with appropriate transport
     if args.sse:
         logger.info(f'Using SSE transport on port {args.port}')
-        mcp.settings.port = args.port
         mcp.run(transport='sse')
     else:
         logger.info('Using standard stdio transport')
