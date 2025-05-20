@@ -81,9 +81,11 @@ def main() -> None:
     parser.add_argument('--port', type=int, default=8888, help='Port to run the server on')
     args = parser.parse_args()
 
+    # Always respect the provided port
+    mcp.settings.port = args.port
+
     # Run server with appropriate transport
     if args.sse:
-        mcp.settings.port = args.port
         mcp.run(transport='sse')
     else:
         mcp.run()

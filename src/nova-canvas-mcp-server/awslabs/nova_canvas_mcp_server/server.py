@@ -326,10 +326,12 @@ def main():
     args = parser.parse_args()
     logger.debug(f'Parsed arguments: sse={args.sse}, port={args.port}')
 
+    # Always respect the provided port
+    mcp.settings.port = args.port
+
     # Run server with appropriate transport
     if args.sse:
         logger.info(f'Using SSE transport on port {args.port}')
-        mcp.settings.port = args.port
         mcp.run(transport='sse')
     else:
         logger.info('Using standard stdio transport')
